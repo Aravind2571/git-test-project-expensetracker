@@ -31,7 +31,7 @@ const AddIncomeModal = ({ onClose, onSuccess }) => {
     setLoading(true);
     try {
       await addTransaction({ ...formData, type: "income" });
-      onSuccess(); // Refresh parent component data
+      onSuccess(); 
       onClose();
     } catch (err) {
       setError(err.response?.data?.message || "Failed to add income");
@@ -54,8 +54,6 @@ const AddIncomeModal = ({ onClose, onSuccess }) => {
           {error && (
             <div className="bg-red-50 text-red-600 text-sm px-4 py-2 rounded-lg">{error}</div>
           )}
-
-          {/* Emoji picker */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Pick an Emoji</label>
             <div className="flex gap-2 flex-wrap">

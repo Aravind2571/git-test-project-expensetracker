@@ -6,7 +6,6 @@ import Dashboard from "./pages/Dashboard";
 import Income from "./pages/Income";
 import Expenses from "./pages/Expenses";
 
-// PrivateRoute — redirects to login if user is not authenticated
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) return <div className="flex items-center justify-center h-screen">Loading...</div>;
@@ -23,7 +22,7 @@ function App() {
           <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/income" element={<PrivateRoute><Income /></PrivateRoute>} />
           <Route path="/expenses" element={<PrivateRoute><Expenses /></PrivateRoute>} />
-          {/* Catch-all redirect */}
+      
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

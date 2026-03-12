@@ -12,7 +12,6 @@ const Dashboard = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Fetch analytics summary when component mounts
   const fetchSummary = async () => {
     try {
       const { data } = await getAnalyticsSummary();
@@ -31,8 +30,6 @@ const Dashboard = () => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
-
-      {/* Main content — offset by sidebar width */}
       <main className="ml-64 flex-1 p-8">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
@@ -47,7 +44,6 @@ const Dashboard = () => {
           <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg">{error}</div>
         ) : (
           <>
-            {/* Summary Cards Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               <SummaryCard
                 title="Total Balance"
@@ -71,10 +67,7 @@ const Dashboard = () => {
                 bgColor="bg-red-50"
               />
             </div>
-
-            {/* Charts + Recent Transactions */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              {/* Pie Chart */}
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                 <h2 className="text-base font-semibold text-gray-800 mb-4">Financial Overview</h2>
                 <FinancialPieChart
@@ -82,8 +75,6 @@ const Dashboard = () => {
                   totalExpenses={summary?.totalExpenses}
                 />
               </div>
-
-              {/* Recent Transactions */}
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-base font-semibold text-gray-800">Recent Transactions</h2>
@@ -103,10 +94,7 @@ const Dashboard = () => {
                 )}
               </div>
             </div>
-
-            {/* Recent Income + Recent Expenses */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Recent Income */}
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-base font-semibold text-gray-800">Recent Income</h2>
@@ -125,8 +113,6 @@ const Dashboard = () => {
                   ))
                 )}
               </div>
-
-              {/* Recent Expenses */}
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-base font-semibold text-gray-800">Recent Expenses</h2>

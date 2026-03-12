@@ -1,4 +1,4 @@
-// Reusable card component for displaying balance/income/expense summaries
+
 const SummaryCard = ({ title, amount, icon, color, bgColor }) => {
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center gap-4">

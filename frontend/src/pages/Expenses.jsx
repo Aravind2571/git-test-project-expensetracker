@@ -36,8 +36,6 @@ const Expenses = () => {
   };
 
   const totalExpenses = transactions.reduce((sum, t) => sum + t.amount, 0);
-
-  // Group expenses by category for a summary breakdown
   const categoryBreakdown = transactions.reduce((acc, t) => {
     acc[t.category] = (acc[t.category] || 0) + t.amount;
     return acc;
@@ -60,27 +58,21 @@ const Expenses = () => {
             Add Expense
           </button>
         </div>
-
-        {/* Total expenses card */}
         <div className="bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-2xl p-5 mb-6">
           <p className="text-rose-100 text-sm font-medium">Total Expenses</p>
           <p className="text-3xl font-bold mt-1">₹{totalExpenses.toLocaleString("en-IN")}</p>
           <p className="text-rose-200 text-sm mt-1">{transactions.length} transactions</p>
         </div>
-
-        {/* Bar chart */}
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 mb-6">
           <h2 className="text-base font-semibold text-gray-800 mb-4">Expenses Over Time</h2>
           <ExpenseBarChart transactions={transactions} />
         </div>
-
-        {/* Category breakdown */}
         {Object.keys(categoryBreakdown).length > 0 && (
           <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 mb-6">
             <h2 className="text-base font-semibold text-gray-800 mb-4">Spending by Category</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {Object.entries(categoryBreakdown)
-                .sort((a, b) => b[1] - a[1]) // Sort by amount desc
+                .sort((a, b) => b[1] - a[1]) 
                 .map(([category, amount]) => (
                   <div key={category} className="bg-rose-50 rounded-xl p-3">
                     <p className="text-sm font-medium text-gray-700">{category}</p>
@@ -92,8 +84,6 @@ const Expenses = () => {
             </div>
           </div>
         )}
-
-        {/* Expense list */}
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
           <h2 className="text-base font-semibold text-gray-800 mb-4">All Expenses</h2>
           {loading ? (

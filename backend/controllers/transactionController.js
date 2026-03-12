@@ -1,8 +1,5 @@
 const Transaction = require("../models/Transaction");
 
-// @desc    Add a transaction (income or expense)
-// @route   POST /api/transactions/add
-// @access  Private
 const addTransaction = async (req, res) => {
   const { type, category, source, amount, emoji, description, date } = req.body;
 
@@ -12,7 +9,7 @@ const addTransaction = async (req, res) => {
     }
 
     const transaction = await Transaction.create({
-      userId: req.user._id, // comes from JWT middleware
+      userId: req.user._id, 
       type,
       category,
       source: source || "",
@@ -28,9 +25,6 @@ const addTransaction = async (req, res) => {
   }
 };
 
-// @desc    Delete a transaction
-// @route   DELETE /api/transactions/:id
-// @access  Private
 const deleteTransaction = async (req, res) => {
   try {
     const transaction = await Transaction.findById(req.params.id);
@@ -39,7 +33,6 @@ const deleteTransaction = async (req, res) => {
       return res.status(404).json({ message: "Transaction not found" });
     }
 
-    // Make sure user owns this transaction
     if (transaction.userId.toString() !== req.user._id.toString()) {
       return res.status(401).json({ message: "Not authorized" });
     }
@@ -51,9 +44,6 @@ const deleteTransaction = async (req, res) => {
   }
 };
 
-// @desc    Get all transactions for logged in user
-// @route   GET /api/transactions
-// @access  Private
 const getAllTransactions = async (req, res) => {
   try {
     const transactions = await Transaction.find({ userId: req.user._id }).sort({
@@ -65,9 +55,6 @@ const getAllTransactions = async (req, res) => {
   }
 };
 
-// @desc    Get all income transactions
-// @route   GET /api/transactions/income
-// @access  Private
 const getIncomeTransactions = async (req, res) => {
   try {
     const income = await Transaction.find({
@@ -79,10 +66,6 @@ const getIncomeTransactions = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-// @desc    Get all expense transactions
-// @route   GET /api/transactions/expense
-// @access  Private
 const getExpenseTransactions = async (req, res) => {
   try {
     const expenses = await Transaction.find({

@@ -2,14 +2,11 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import moment from "moment";
 
 const IncomeBarChart = ({ transactions }) => {
-  // Group transactions by date and sum amounts for each day
   const dataMap = {};
   transactions.forEach((t) => {
     const day = moment(t.date).format("DD MMM");
     dataMap[day] = (dataMap[day] || 0) + t.amount;
   });
-
-  // Convert object to array for Recharts
   const data = Object.entries(dataMap).map(([date, amount]) => ({ date, amount }));
 
   if (data.length === 0) {

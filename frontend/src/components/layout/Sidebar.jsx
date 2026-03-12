@@ -11,28 +11,21 @@ const Sidebar = () => {
     logout();
     navigate("/login");
   };
-
-  // Nav items with path, label, icon
   const navItems = [
     { path: "/", label: "Dashboard", icon: <MdDashboard size={20} /> },
     { path: "/income", label: "Income", icon: <MdTrendingUp size={20} /> },
     { path: "/expenses", label: "Expenses", icon: <MdTrendingDown size={20} /> },
   ];
-
-  // Get initials for avatar
   const initials = user?.name?.split(" ").map((n) => n[0]).join("").toUpperCase() || "U";
 
   return (
     <aside className="w-64 bg-white h-screen fixed left-0 top-0 shadow-lg flex flex-col z-10">
-      {/* Logo */}
       <div className="px-6 py-5 border-b border-gray-100">
         <div className="flex items-center gap-2">
           <span className="text-2xl">💰</span>
           <span className="text-lg font-bold text-gray-800">ExpenseTracker</span>
         </div>
       </div>
-
-      {/* Profile section */}
       <div className="px-6 py-5 border-b border-gray-100">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
@@ -44,8 +37,6 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-
-      {/* Navigation */}
       <nav className="flex-1 px-4 py-4">
         <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
           Menu
@@ -68,8 +59,6 @@ const Sidebar = () => {
           ))}
         </ul>
       </nav>
-
-      {/* Logout button at bottom */}
       <div className="px-4 py-5 border-t border-gray-100">
         <button
           onClick={handleLogout}

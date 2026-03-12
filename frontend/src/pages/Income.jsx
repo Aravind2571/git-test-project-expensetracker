@@ -11,7 +11,6 @@ const Income = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
-  // Fetch all income transactions
   const fetchIncome = async () => {
     try {
       const { data } = await getIncomeTransactions();
@@ -27,17 +26,15 @@ const Income = () => {
     fetchIncome();
   }, []);
 
-  // Delete transaction and refresh list
   const handleDelete = async (id) => {
     try {
       await deleteTransaction(id);
-      fetchIncome(); // Re-fetch after delete
+      fetchIncome();
     } catch (err) {
       console.error("Failed to delete", err);
     }
   };
 
-  // Calculate total income
   const totalIncome = transactions.reduce((sum, t) => sum + t.amount, 0);
 
   return (
@@ -47,7 +44,9 @@ const Income = () => {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-800">Income</h1>
-            <p className="text-gray-500 text-sm mt-1">Track all your income sources</p>
+            <p className="text-gray-500 text-sm mt-1">
+              Track all your income sources
+            </p>
           </div>
           <button
             onClick={() => setShowModal(true)}
@@ -58,22 +57,25 @@ const Income = () => {
           </button>
         </div>
 
-        {/* Total income card */}
         <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white rounded-2xl p-5 mb-6">
           <p className="text-indigo-100 text-sm font-medium">Total Income</p>
-          <p className="text-3xl font-bold mt-1">₹{totalIncome.toLocaleString("en-IN")}</p>
-          <p className="text-indigo-200 text-sm mt-1">{transactions.length} transactions</p>
+          <p className="text-3xl font-bold mt-1">
+            ₹{totalIncome.toLocaleString("en-IN")}
+          </p>
+          <p className="text-indigo-200 text-sm mt-1">
+            {transactions.length} transactions
+          </p>
         </div>
-
-        {/* Bar chart */}
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 mb-6">
-          <h2 className="text-base font-semibold text-gray-800 mb-4">Income Over Time</h2>
+          <h2 className="text-base font-semibold text-gray-800 mb-4">
+            Income Over Time
+          </h2>
           <IncomeBarChart transactions={transactions} />
         </div>
-
-        {/* Income list */}
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-          <h2 className="text-base font-semibold text-gray-800 mb-4">All Income</h2>
+          <h2 className="text-base font-semibold text-gray-800 mb-4">
+            All Income
+          </h2>
           {loading ? (
             <p className="text-gray-400 text-sm text-center py-6">Loading...</p>
           ) : transactions.length === 0 ? (
@@ -92,8 +94,6 @@ const Income = () => {
           )}
         </div>
       </main>
-
-      {/* Modal — only show when showModal is true */}
       {showModal && (
         <AddIncomeModal
           onClose={() => setShowModal(false)}

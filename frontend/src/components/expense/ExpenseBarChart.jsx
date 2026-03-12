@@ -2,7 +2,6 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import moment from "moment";
 
 const ExpenseBarChart = ({ transactions }) => {
-  // Group transactions by date and sum amounts for each day
   const dataMap = {};
   transactions.forEach((t) => {
     const day = moment(t.date).format("DD MMM");

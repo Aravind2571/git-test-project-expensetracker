@@ -20,7 +20,7 @@ const Login = () => {
     setLoading(true);
     try {
       const { data } = await loginUser(formData);
-      login(data); // Save user to context + localStorage
+      login(data); 
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
